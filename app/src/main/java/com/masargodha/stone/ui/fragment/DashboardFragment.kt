@@ -5,59 +5,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.masargodha.stone.R
-import com.masargodha.stone.databinding.FragmentDashboardBinding
+import com.masargodha.stone.data.entity.OrderEntity
 import com.masargodha.stone.ui.adapter.OrderAdapter
-import com.masargodha.stone.ui.viewmodel.DashboardViewModel
-import com.masargodha.stone.data.database.AppDatabase
-import com.masargodha.stone.data.repository.OrderRepository
-import com.masargodha.stone.data.repository.CustomerRepository
 
 class DashboardFragment : Fragment() {
 
-    private lateinit var binding: FragmentDashboardBinding
-    private val viewModel: DashboardViewModel by viewModels()
-    private lateinit var orderAdapter: OrderAdapter
+    private val _todayOrders = MutableLiveData<List<OrderEntity>>()
+    private val todayOrders: LiveData<List<OrderEntity>> = _todayOrders
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentDashboardBinding.inflate(inflater, container, false)
-        return binding.root
+    ): View? {
+        return inflater.inflate(R.layout.fragment_dashboard, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
-        observeData()
+        setupUI(view)
     }
 
-    private fun setupRecyclerView() {
-        orderAdapter = OrderAdapter(emptyList())
-        binding.rvTodayOrders.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = orderAdapter
-        }
-    }
-
-    private fun observeData() {
-        viewModel.todayOrders.observe(viewLifecycleOwner, Observer { orders ->
-            orderAdapter = OrderAdapter(orders)
-            binding.rvTodayOrders.adapter = orderAdapter
-            binding.tvNoOrders.visibility = if (orders.isEmpty()) View.VISIBLE else View.GONE
-        })
-
-        viewModel.totalCustomers.observe(viewLifecycleOwner, Observer { count ->
-            binding.tvTotalCustomers.text = count.toString()
-        })
-
-        viewModel.totalSales.observe(viewLifecycleOwner, Observer { sales ->
-            binding.tvTotalSales.text = String.format("%.2f", sales)
-        })
+    private fun setupUI(view: View) {
+        // RecyclerView setup
+        val rv = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_today_orders)
+        rv.layoutManager = LinearLayoutManager(requireContext())
+        rv.adapter = OrderAdapter(emptyList())
     }
 }
