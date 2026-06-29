@@ -2,36 +2,24 @@ package com.masargodha.stone.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.masargodha.stone.R
-import com.masargodha.stone.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var navController: androidx.navigation.NavController
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
-        val navView: BottomNavigationView = binding.navView
-        navController = findNavController(R.id.nav_host_fragment_activity_main)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        navController = navHostFragment.navController
 
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_dashboard,
-                R.id.navigation_orders,
-                R.id.navigation_customers,
-                R.id.navigation_rates
-            )
-        )
-
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
+        val navView: BottomNavigationView = findViewById(R.id.nav_view)
         NavigationUI.setupWithNavController(navView, navController)
     }
 
