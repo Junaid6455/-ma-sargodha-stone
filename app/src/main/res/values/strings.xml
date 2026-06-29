@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ایم اے سرگودھا سٹون</string>
+    
+    <!-- Bottom Navigation -->
+    <string name="nav_dashboard">ڈیش بورڈ</string>
+    <string name="nav_orders">آرڈرز</string>
+    <string name="nav_customers">کسٹمرز</string>
+    <string name="nav_rates">شرح نرخ</string>
+    
+    <!-- Dashboard -->
+    <string name="today_orders">آج کے آرڈرز</string>
+    <string name="total_customers">کل کسٹمرز</string>
+    <string name="total_sales">کل فروخت</string>
+    <string name="monthly_orders">ماہانہ آرڈرز</string>
+    
+    <!-- Orders -->
+    <string name="add_order">نیا آرڈر</string>
+    <string name="edit_order">آرڈر میں ترمیم</string>
+    <string name="delete_order">آرڈر حذف کریں</string>
+    <string name="order_status">حالت</string>
+    <string name="pending">زیرالتوا</string>
+    <string name="dispatched">بھیجا ہوا</string>
+    <string name="delivered">پہنچایا ہوا</string>
+    
+    <!-- Customers -->
+    <string name="add_customer">نیا کسٹمر</string>
+    <string name="edit_customer">کسٹمر میں ترمیم</string>
+    <string name="delete_customer">کسٹمر حذف کریں</string>
+    <string name="customer_name">نام</string>
+    <string name="customer_phone">فون نمبر</string>
+    <string name="customer_address">پتہ</string>
+    <string name="notes">نوٹس</string>
+    
+    <!-- Rates -->
+    <string name="add_rate">نئی شرح</string>
+    <string name="material_name">مواد کا نام</string>
+    <string name="rate">شرح</string>
+    <string name="unit">اکائی</string>
+    <string name="mun">من</string>
+    
+    <!-- Common -->
+    <string name="save">محفوظ کریں</string>
+    <string name="cancel">منسوخ کریں</string>
+    <string name="delete">حذف کریں</string>
+    <string name="edit">ترمیم</string>
+    <string name="no_data">کوئی ڈیٹا نہیں</string>
+    <string name="search">تلاش کریں</string>
+    <string name="voice_assistant">صوتی مدد</string>
+</resources>
